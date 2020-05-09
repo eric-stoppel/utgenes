@@ -19,7 +19,7 @@ public class UTgeNesUtilsTest {
 		
 		Method setterNoCamelCase = UTgeNesUtils.armarSetter(new IndividuoDePrueba(), IndividuoDePrueba.class.getDeclaredField("prop2"));
 		Assert.assertTrue("setprop2".equalsIgnoreCase(setterNoCamelCase.getName()));
-		Assert.assertNotEquals("setprop2", setterNoCamelCase.getName());
+		Assert.assertFalse("setprop2".equals(setterNoCamelCase.getName()));
 	}
 	
 	@Test
@@ -30,7 +30,7 @@ public class UTgeNesUtilsTest {
 		
 		Method getterNoCamelCase = UTgeNesUtils.armarGetter(new IndividuoDePrueba(), IndividuoDePrueba.class.getDeclaredField("prop2"));
 		Assert.assertTrue("getprop2".equalsIgnoreCase(getterNoCamelCase.getName()));
-		Assert.assertNotEquals("getprop2", getterNoCamelCase.getName());
+		Assert.assertFalse("getprop2".equals(getterNoCamelCase.getName()));
 	}
 	
 	@Test
