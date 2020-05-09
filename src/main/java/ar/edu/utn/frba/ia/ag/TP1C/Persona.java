@@ -13,9 +13,10 @@ public class Persona extends Individuo {
 	private String bebida;
 	private String mascota;
 	private String nacionalidad;
-	private Persona vecinoIzquierda;
-	private Persona vecinoDerecha;
+	private Vecino vecinoIzquierda;
+	private Vecino vecinoDerecha;
 
+	public Persona(){};
 
 	private static List<String> ubicacionesCasa = Arrays.asList("primera", "segunda", "tercera", "cuarta", "quinta");
 	private static List<String> coloresCasa = Arrays.asList("azul", "amarilla", "verde", "marfil", "roja");
@@ -40,66 +41,33 @@ public class Persona extends Individuo {
 		persona.setMascota(mascotaIndividuo);
 		persona.setUbicacionCasa(ubicacionCasaIndividuo);
 		persona.setNacionalidad(nacionalidadIndividuo);
+		persona.setVecinoIzquierda(new Vecino());
+		persona.setVecinoDerecha(new Vecino());
 		return persona;
 	}
 
 	//devuelve un valor
 	@Override
 	public double aptitud() {
-		
-		if (this.x < 0 || this.x > 15) {
-			return 0;
+		int valor = 0;
+		Pista pista = new Pista(this);
+		for(int i = 2 ; i<16; i++){
+			if (pista.seCumpleLaPista(i)) valor++;
 		}
-		return Math.abs((this.x - 5) / (2 + Math.sin(this.x)));
-	}
-
-	//REGLAS----------
-	private boolean cumpleRegla2(){
-		return this.nacionalidad.equals("ingles") && this.colorCasa.equals("roja");
-	}
-	private boolean cumpleRegla3(){
-		return this.nacionalidad.equals("español") && this.mascota.equals("perro");
-	}
-
-	private boolean cumpleRegla4(){
-		return this.colorCasa.equals("verde") && this.bebida.equals("cafe");
-	}
-
-	private boolean cumpleRegla5(){
-		return this.nacionalidad.equals("ucraniano") && this.bebida.equals("te");
-	}
-
-	private boolean cumpleRegla6(){
-		return true; //La casa verde está justo al lado derecho de la casa color marfil.
-	}
-
-	private boolean cumpleRegla7(){
-		return this.marcaCigarrillos.equals("the old gold") && this.mascota.equals("caracoles");
-	}
-
-	private boolean cumpleRegla8(){
-		return this.marcaCigarrillos.equals("kools") && this.colorCasa.equals("amarillo");
-	}
-
-	private boolean cumpleRegla9(){
-		return this.ubicacionCasa.equals("tercera") && this.bebida.equals("leche");
-	}
-
-	private boolean cumpleRegla10(){
-		return this.nacionalidad.equals("noruego") && this.ubicacionCasa.equals("primera");
-	}
-
-	private boolean cumpleRegla11(){
-		return this.marcaCigarrillos.equals("chesterfields"); //vive al lado del vecino que tiene un zorro.
-	}
-
-	private boolean cumpleRegla12(){
-		return this.marcaCigarrillos.equals("kools"); //&& this.vecinoIzquierda
+		return valor;
 	}
 
 	@Override
 	public String toString() {
-		return "x = " + x + " / f(x) = " + this.aptitud();
+
+		return "Individuo ["+this.getNacionalidad()+"," +
+				" "+this.getColorCasa()+"," +
+				" "+this.getMascota()+"," +
+				" "+this.getMarcaCigarrillos()+"," +
+				" "+this.getUbicacionCasa()+" ," +
+				" "+this.getBebida()+"] ," +
+				" "+this.getVecinoIzquierda().toString()+"," +
+				" "+this.getVecinoDerecha().toString()+"" + " / f(x) = " + this.aptitud();
 	}
 
 	public String getUbicacionCasa() {
@@ -147,6 +115,21 @@ public class Persona extends Individuo {
 
 	public void setNacionalidad(String nacionalidad) {
 		this.nacionalidad = nacionalidad;
+	}
+	public Vecino getVecinoIzquierda() {
+		return vecinoIzquierda;
+	}
+
+	public void setVecinoIzquierda(Vecino vecinoIzquierda) {
+		this.vecinoIzquierda = vecinoIzquierda;
+	}
+
+	public Vecino getVecinoDerecha() {
+		return vecinoDerecha;
+	}
+
+	public void setVecinoDerecha(Vecino vecinoDerecha) {
+		this.vecinoDerecha = vecinoDerecha;
 	}
 
 

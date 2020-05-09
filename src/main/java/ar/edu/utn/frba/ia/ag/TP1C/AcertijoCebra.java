@@ -25,11 +25,11 @@ public class AcertijoCebra {
 //		new Simple(), // cruzamiento
 //		new MutacionSimple(0.2)
 		
-		AlgoritmoGenetico maximoLocal = new AlgoritmoGenetico(c, Persona.class);
+		AlgoritmoGenetico acertijoCebra = new AlgoritmoGenetico(c, Persona.class);
 		
-		Individuo x = maximoLocal.ejecutar();
+		Individuo persona = acertijoCebra.ejecutar();
 		
-		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).severe("Individuo final: " + x.toString());
+		Logger.getLogger(Logger.GLOBAL_LOGGER_NAME).info("Individuo final: " + persona.toString());
 		
 		System.out.println("------------------------------------------------------------------------");
 		
